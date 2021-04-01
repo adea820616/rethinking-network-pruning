@@ -22,10 +22,10 @@ class BasicBlock(nn.Module):
     def __init__(self, inplanes, planes, cfg, stride=1, downsample=None):
         # cfg should be a number in this case
         super(BasicBlock, self).__init__()
-        self.conv1 = conv3x3(inplanes, cfg, stride)
+        self.conv1 = conv3x3(inplanes, cfg, stride) # in_planes, out_planes, stride
         self.bn1 = nn.BatchNorm2d(cfg)
         self.relu = nn.ReLU(inplace=True)
-        self.conv2 = conv3x3(cfg, planes)
+        self.conv2 = conv3x3(cfg, planes) # in_planes, out_planes, stride=1
         self.bn2 = nn.BatchNorm2d(planes)
         self.downsample = downsample
         self.stride = stride
@@ -72,11 +72,11 @@ class ResNet(nn.Module):
             cfg = [[16]*n, [32]*n, [64]*n]
             cfg = [item for sub_list in cfg for item in sub_list]
 
-        self.cfg = cfg
+        self.cfg = cfg # out_planes
 
         self.inplanes = 16
         self.conv1 = nn.Conv2d(3, 16, kernel_size=3, padding=1,
-                               bias=False)
+                               bias=False) # in_channels=3, out_channels=16
         self.bn1 = nn.BatchNorm2d(16)
         self.relu = nn.ReLU(inplace=True)
         self.layer1 = self._make_layer(block, 16, n, cfg=cfg[0:n])
