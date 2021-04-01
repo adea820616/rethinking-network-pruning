@@ -20,11 +20,11 @@ parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='disables CUDA training')
 parser.add_argument('--depth', type=int, default=110,
                     help='depth of the resnet')
-parser.add_argument('--model', default='', type=str, metavar='PATH',
+parser.add_argument('--model', default='/home/jovyan/model_compression/rethinking-network-pruning/cifar/l1-norm-pruning/logs/model_best.pth.tar', type=str, metavar='PATH',
                     help='path to the model (default: none)')
-parser.add_argument('--save', default='', type=str, metavar='PATH',
+parser.add_argument('--save', default='/home/jovyan/model_compression/rethinking-network-pruning/cifar/l1-norm-pruning/logs/', type=str, metavar='PATH',
                     help='path to save pruned model (default: none)')
-parser.add_argument('-v', default='A', type=str, 
+parser.add_argument('-v', default='B', type=str, 
                     help='version of the model')
 
 args = parser.parse_args()
